@@ -609,7 +609,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     driver.emit({'bad_value'=>"\255".force_encoding("UTF-8")})
     driver.run
     p log.out.logs
-    assert_logs_include(log.out.logs, 'input string invalid')
+    assert_logs_include(log.out.logs, /(input string invalid)|(invalid byte sequence in UTF-8)/)
   end
 
   def test_writes_to_default_index
