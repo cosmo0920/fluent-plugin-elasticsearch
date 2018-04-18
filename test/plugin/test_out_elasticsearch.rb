@@ -606,7 +606,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     log = driver.instance.router.emit_error_handler.log
     stub_elastic_ping
     stub_elastic
-    driver.emit({'bad_value'=>"\255"})
+    driver.emit({'bad_value'=>"\255".force_encoding("UTF-8")})
     driver.run
     p log.out.logs
     assert_logs_include(log.out.logs, 'input string invalid')
