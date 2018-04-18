@@ -608,6 +608,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     stub_elastic
     driver.emit({'bad_value'=>"\255"})
     driver.run
+    p log.out.logs
     assert_logs_include(log.out.logs, 'input string invalid')
   end
 
